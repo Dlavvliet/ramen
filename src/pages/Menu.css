@@ -1,0 +1,444 @@
+/* Глобальный плавный скролл */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ====================== ОСНОВНОЙ КОНТЕЙНЕР ====================== */
+.menu-container {
+  font-family: "Montserrat", sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 20px 40px 20px;
+
+  opacity: 0;
+  animation: fadeOnly 0.8s ease forwards;
+}
+
+.menuTitle {
+  font-size: 48px;
+  font-weight: 800;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 30px;
+  padding-top: 100px;
+}
+
+/* ====================== НАВИГАЦИЯ ====================== */
+.menu-nav {
+  padding: 15px 0;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.nav-button {
+  background-color: #ffffff;
+  padding: 18px 0;
+  color: rgb(0, 0, 0);
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nav-button::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 4px;
+  background: rgb(233, 50, 5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.nav-button:hover::after {
+  width: 100%;
+}
+
+.mainCorzBtn {
+  font-family: "Montserrat", sans-serif;
+  margin-left: auto;
+  border: 0;
+  border-radius: 20px;
+  background-color: rgb(112, 51, 47);
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 14px 26px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(233, 50, 5, 0.3);
+  transition: all 0.3s ease;
+}
+
+.mainCorzBtn:hover {
+  background: #b71c1c;
+  transform: translateY(-2px);
+}
+
+/* ====================== КОНТЕНТ ====================== */
+.content-section {
+  font-family: "Montserrat", sans-serif;
+  min-height: 100vh;
+  padding: 20px 40px;
+  margin-bottom: 80px;
+  border-radius: 25px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+
+  opacity: 0;
+  animation: fadeOnly 0.8s ease forwards;
+}
+
+.content-section h2 {
+  color: #000000;
+  font-size: 34px;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.content-section p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #333;
+  max-width: 800px;
+}
+
+/* ====================== АНИМАЦИИ ====================== */
+@keyframes fadeOnly {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ====================== КАРТОЧКИ ТОВАРОВ ====================== */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  height: 100%;
+  background: white;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px);
+}
+
+.menu-card__photo {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  object-position: center;
+  background: #f9f9f9;
+}
+
+.menu-card__name {
+  margin: 1rem 1.5rem 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.menu-card__description {
+  margin: 0 1.5rem 1.5rem;
+  color: #666;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.menu-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem 1.5rem;
+  margin-top: auto;
+}
+
+.menu-card__price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000000;
+}
+
+.menu-card__btn {
+  background: rgb(112, 51, 47);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.menu-card__btn:hover {
+  background: #b71c1c;
+}
+
+/* ====================== МОДАЛЬНОЕ ОКНО ====================== */
+.modal-overlay {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 99999;
+
+  backdrop-filter: blur(5px);
+
+  overflow-y: auto;
+  padding: 20px;
+
+  box-sizing: border-box;
+}
+
+.modal-content {
+  position: relative;
+  animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  background: none;
+  border: none;
+
+  font-size: 36px;
+  font-weight: 700;
+  color: rgb(0, 0, 0);
+
+  cursor: pointer;
+
+  z-index: 1001;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  transform: rotate(90deg);
+}
+
+.modal-card {
+  background: white;
+  border-radius: 24px;
+
+  display: flex;
+
+  width: 100%;
+  max-width: 1200px;
+
+  max-height: 90vh;
+
+  overflow: hidden;
+
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+}
+
+.modal-cardPht {
+  width: 500px;
+  height: 500px;
+
+  object-fit: contain;
+  object-position: center;
+
+  flex-shrink: 0;
+
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+.modal-card__content {
+  padding: 60px;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;
+}
+
+.modal-card__name {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.modal-card__description {
+  font-size: 1.4rem;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 3rem;
+  flex-grow: 1;
+}
+
+.modal-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+
+  padding-top: 30px;
+  border-top: 2px solid #f0f0f0;
+
+  margin-top: auto;
+}
+
+.modal-card__price {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #000;
+}
+
+.modal-cardBtnCorz {
+  background: rgb(233, 50, 5);
+  color: white;
+
+  border: none;
+
+  padding: 1.5rem 3rem;
+
+  border-radius: 12px;
+
+  font-size: 1.4rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  box-shadow: 0 8px 25px rgba(233, 50, 5, 0.3);
+
+  white-space: nowrap;
+}
+
+.modal-cardBtnCorz:hover {
+  background: #b71c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(233, 50, 5, 0.4);
+}
+
+/* ====================== АДАПТИВ ====================== */
+@media (max-width: 768px) {
+  .menu-nav {
+    padding: 12px 0;
+    gap: 15px;
+  }
+
+  .nav-button {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+
+  .mainCorzBtn {
+    padding: 12px 20px;
+    font-size: 18px;
+  }
+
+  .content-section {
+    padding: 30px 20px;
+    margin-bottom: 60px;
+  }
+
+  .modal-card {
+    flex-direction: column;
+    max-height: unset;
+  }
+
+  .modal-cardPht {
+    width: 100%;
+    height: 300px;
+  }
+
+  .modal-card__content {
+    padding: 30px 20px;
+  }
+
+  .modal-card__name {
+    font-size: 2rem;
+  }
+
+  .modal-card__description {
+    font-size: 1.1rem;
+  }
+
+  .modal-card__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .modal-cardBtnCorz {
+    width: 100%;
+  }
+}

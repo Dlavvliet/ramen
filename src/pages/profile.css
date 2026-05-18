@@ -1,0 +1,299 @@
+.profile-page {
+  min-height: 100vh;
+  background: #f7f3f2;
+  background-image: none;
+  padding: 140px 20px 60px;
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+.profile-container {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* === Шапка профиля === */
+.profile-header {
+  background: rgb(112, 51, 47);
+  border-radius: 20px;
+  padding: 28px 32px;
+  color: #fff;
+  text-align: center;
+}
+
+.profile-header-info h1 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+  word-break: break-all;
+}
+
+.profile-header-info p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.75;
+  font-weight: 400;
+}
+
+/* === Аватар в карточке === */
+.avatar-upload-area {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.avatar-upload-preview-wrap {
+  flex-shrink: 0;
+}
+
+.avatar-upload-preview {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: #f0eae9;
+  border: 3px dashed #c9b0ae;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.avatar-upload-preview:hover {
+  border-color: rgb(112, 51, 47);
+}
+
+.avatar-upload-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* === Уведомления === */
+.profile-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-left: 4px solid #43a047;
+}
+
+.profile-error {
+  background: #fdecea;
+  color: #c62828;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-left: 4px solid #e53935;
+}
+
+/* === Карточка === */
+.profile-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: 0 2px 16px rgba(112, 51, 47, 0.08);
+}
+
+.profile-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgb(112, 51, 47);
+  margin: 0 0 22px;
+}
+
+/* === Форма === */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input {
+  padding: 13px 16px;
+  border: 2px solid #e8e0df;
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: "Montserrat", sans-serif;
+  color: #222;
+  background: #faf8f7;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus {
+  border-color: rgb(112, 51, 47);
+  box-shadow: 0 0 0 3px rgba(112, 51, 47, 0.1);
+  background: #fff;
+}
+
+.form-group input::placeholder {
+  color: #bbb;
+}
+
+.profile-btn {
+  margin-top: 6px;
+  padding: 14px 28px;
+  border-radius: 25px;
+  border: none;
+  background: rgb(112, 51, 47);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+}
+
+.profile-btn:hover {
+  background: rgb(90, 40, 36);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(112, 51, 47, 0.35);
+}
+
+@media (max-width: 600px) {
+  .profile-page {
+    padding: 120px 12px 40px;
+  }
+  .profile-header {
+    padding: 20px;
+    flex-direction: column;
+    text-align: center;
+  }
+  .profile-card {
+    padding: 20px;
+  }
+  .profile-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* === Загрузка аватара === */
+.avatar-upload-area {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.avatar-upload-preview {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  cursor: pointer;
+  background: #f0eae9;
+  border: 3px dashed #c9b0ae;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.avatar-upload-preview:hover {
+  border-color: rgb(112, 51, 47);
+}
+
+.avatar-upload-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-upload-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #a08a88;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.avatar-upload-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(112, 51, 47, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  border-radius: 50%;
+}
+
+.avatar-upload-preview:hover .avatar-upload-overlay {
+  opacity: 1;
+}
+
+.avatar-upload-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.avatar-hint {
+  margin: 0;
+  font-size: 12px;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.avatar-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.profile-btn--outline {
+  background: transparent !important;
+  border: 2px solid rgb(112, 51, 47) !important;
+  color: rgb(112, 51, 47) !important;
+}
+
+.profile-btn--outline:hover {
+  background: rgb(112, 51, 47) !important;
+  color: #fff !important;
+}
+
+.profile-btn--danger {
+  background: #c0392b !important;
+}
+
+.profile-btn--danger:hover {
+  background: #a93226 !important;
+  box-shadow: 0 4px 14px rgba(192, 57, 43, 0.35) !important;
+}
+
+@media (max-width: 500px) {
+  .avatar-upload-area {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
