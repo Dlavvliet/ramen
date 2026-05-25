@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CgChevronRightO, CgChevronLeftO } from "react-icons/cg";
 import './Slider.css';
 
 export default function Slider({ images, autoPlay = true, interval = 5000, height = 700 }) {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -60,7 +62,7 @@ export default function Slider({ images, autoPlay = true, interval = 5000, heigh
         <div className="slider-overlay">
           <h1 className="slider-title">Добро пожаловать в Ichiraku Ramen!</h1>
           <p className="slider-subtitle">Доставка за 30 минут или сет роллов бесплатно*</p>
-          <button className="slider-cta">Сделать заказ</button>
+          <button className="slider-cta" onClick={() => navigate('/menu')}>Сделать заказ</button>
         </div>
 
         <button

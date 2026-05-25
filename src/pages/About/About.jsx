@@ -1,4 +1,25 @@
+import { Link } from 'react-router-dom';
 import './About.css';
+import Accordion from '../../components/accordion/Accordion';
+
+const faqData = [
+  {
+    question: 'Как долго варится бульон?',
+    answer: 'Наш бульон варится на медленном огне 24 часа. Это позволяет извлечь максимум вкуса и питательных веществ из костей и овощей, создавая насыщенную основу для рамена.'
+  },
+  {
+    question: 'Есть ли вегетарианские блюда?',
+    answer: 'Да! У нас есть вегетарианские и веганские варианты рамена на основе мисо и овощного бульона. Также доступны вегетарианские роллы, гёдза с овощной начинкой и салаты.'
+  },
+  {
+    question: 'Как быстро осуществляется доставка?',
+    answer: 'Мы доставляем заказы в течение 30 минут. Если доставка задержится — вы получаете сет роллов бесплатно. Работаем ежедневно с 10:00 до 23:00.'
+  },
+  {
+    question: 'Используете ли вы свежие ингредиенты?',
+    answer: 'Рыба и морепродукты поступают с утреннего рынка каждый день. Овощи — сезонные, от проверенных поставщиков. Лапша делается вручную прямо на кухне каждое утро.'
+  }
+];
 
 export default function About() {
   return (
@@ -58,7 +79,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* Фото ресторана */}
           <div className='gallerySection'>
             <h4 className='galleryTitle'>Наш ресторан</h4>
             <div className='galleryGrid'>
@@ -77,7 +97,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* Партнеры */}
           <div className='partnersSection'>
             <h4 className='partnersTitle'>Наши партнеры</h4>
             <div className='partnersGrid'>
@@ -99,8 +118,10 @@ export default function About() {
               </div>
             </div>
           </div>
-          
-          <button className='orderBtn'>Заказать сейчас</button>
+
+          <Accordion title="Частые вопросы" items={faqData} />
+
+          <Link to="/menu" className='orderBtn'>Заказать сейчас</Link>
         </div>
       </div>
     </div>

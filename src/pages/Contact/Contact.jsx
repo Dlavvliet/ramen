@@ -27,20 +27,31 @@ export default function Contact() {
           [51.6720, 39.1843],
           [51.6605, 39.2008],
           [51.6832, 39.2087],
-          [51.6451, 39.1654],
-          [51.6789, 39.1745],
-          [51.6800, 39.1900],
-          [51.6650, 39.2100],
-          [51.6900, 39.1700]
         ];
+
+        const customIcon = window.ymaps.templateLayoutFactory.createClass(
+          `<div style="
+            width: 20px;
+            height: 20px;
+            background: rgb(112, 51, 47);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+          "></div>`
+        );
 
         pizzerias.forEach(coords => {
           map.geoObjects.add(
             new window.ymaps.Placemark(coords, {
-              hintContent: '🍕 Пиццерия',
-              balloonContent: 'Наш филиал пиццерии в Воронеже'
+              hintContent: '🍜 Ichiraku Ramen',
+              balloonContent: 'Наш филиал в Воронеже'
             }, {
-              preset: 'islands#orangeCircleDotIcon'
+              iconLayout: customIcon,
+              iconShape: {
+                type: 'Circle',
+                coordinates: [10, 10],
+                radius: 10
+              }
             })
           );
         });
@@ -71,7 +82,7 @@ export default function Contact() {
         <section className="contactsFlex">
           <div className="contactCard phone-card">
             <FaPhone className="contactIcon" />
-            <h3>Заказ по телефону</h3>
+            <h3>Сделать заказ или забронировать стол</h3>
             <p className="phoneNum">+7 (473) 202-30-60</p>
             <button className={`copy-button ${copiedPhone ? 'copied' : ''}`} onClick={copyPhone}>
               {copiedPhone ? '✅ Скопировано!' : '📋 Копировать номер'}
@@ -101,8 +112,8 @@ export default function Contact() {
         </section>
 
         <section className="map-section">
-          <h2 className="section-title">🗺️ Наши филиалы (8 точек)</h2>
-          <p className="map-subtitle">Оранжевые метки - наши пиццерии по всему Воронежу</p>
+          <h2 className="section-title">🗺️ Наши филиалы (3 точек)</h2>
+          <p className="map-subtitle">Метки — наши рестораны по всему Воронежу</p>
           <div ref={mapRef} className="map-container" />
         </section>
 
@@ -128,7 +139,7 @@ export default function Contact() {
               <strong>Доставка:</strong> Бесплатно от 500₽ в радиусе 5 км
             </div>
             <div className="info-item">
-              <strong>Самовывоз:</strong> Скидка 15% на все пиццы
+              <strong>Самовывоз:</strong> Скидка 15% на все блюда
             </div>
             <div className="info-item">
               <strong>Акции:</strong> Ежедневно 2+1 по меню

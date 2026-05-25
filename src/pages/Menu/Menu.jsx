@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
 import './Menu.css';
-import Cart from './Cart';
+import Cart from '../Cart/Cart';
 
 const API_URL = 'http://localhost:3001';
 

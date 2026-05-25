@@ -42,12 +42,12 @@ const Footer = () => {
             </div>
             <div className="contact-item">
               <span>💬</span>
-              <a href="https://wa.me/78001234567">WhatsApp</a>
+              <a href="https://max.ru">Max</a>
             </div>
             <div className="social-links">
               <a href="#" aria-label="VK">VK</a>
               <a href="#" aria-label="Telegram">Telegram</a>
-              <a href="#" aria-label="Whatsapp">Whatsapp</a>
+              <a href="#" aria-label="Max">Max</a>
             </div>
           </div>
         </div>

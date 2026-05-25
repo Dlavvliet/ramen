@@ -1,8 +1,11 @@
-import Slider from '../components/slider/Slider';
+import { useNavigate } from 'react-router-dom';
+import Slider from '../../components/slider/Slider';
 import './pages.css';
-import Footer from '../components/footer/Footer';
+import Footer from '../../components/footer/Footer';
 
 export default function Home() {
+  const navigate = useNavigate();
+
   const images = [
     '/images/1.png',
     '/images/2.png',
@@ -27,7 +30,9 @@ export default function Home() {
               <li>🐟 Рыба с утреннего рынка</li>
               <li>🫙 Мисо собственного приготовления</li>
             </ul>
-            <button className="features-cta">Перейти в меню</button>
+            <button className="features-cta" onClick={() => navigate('/menu')}>
+              Перейти в меню
+            </button>
           </div>
         </div>
       </section>
@@ -37,7 +42,9 @@ export default function Home() {
           <div className="features-content">
             <h2 className="features-title">Мы открыты по всей России!</h2>
             <p className="features-text">Рестораны рядом с домом и быстрая доставка</p>
-            <button className="features-cta">Сделать заказ</button>
+            <button className="features-cta" onClick={() => navigate('/menu')}>
+              Сделать заказ
+            </button>
           </div>
         </div>
         <div className="right">
@@ -54,7 +61,9 @@ export default function Home() {
         <div className='threeCont'>
           <h2 className="features-title">И не только рамен!</h2>
           <p className="features-text">Суши, роллы, гёдза и японские напитки</p>
-          <button className="features-cta">Сделать заказ</button>
+          <button className="features-cta" onClick={() => navigate('/menu')}>
+            Сделать заказ
+          </button>
         </div>
         <div className="features-image">
           <img src="/images/home4.png" alt="Японские десерты" />
