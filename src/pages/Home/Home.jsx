@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Slider from '../../components/slider/Slider';
 import './pages.css';
-import Footer from '../../components/footer/Footer';
 
 export default function Home() {
   const navigate = useNavigate();

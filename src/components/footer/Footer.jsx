@@ -16,10 +16,10 @@ const Footer = () => {
             <div className="footer-column">
               <h4>Меню</h4>
               <ul>
+                <li><a href="/">Главная</a></li>
                 <li><a href="/menu">Меню</a></li>
-                <li><a href="/menu#wok">Вок</a></li>
-                <li><a href="/menu#combo">Комбо</a></li>
-                <li><a href="/menu#drinks">Напитки</a></li>
+                <li><a href="/about">О нас</a></li>
+                <li><a href="/contact">Контакты</a></li>
               </ul>
             </div>
             
@@ -45,9 +45,8 @@ const Footer = () => {
               <a href="https://max.ru">Max</a>
             </div>
             <div className="social-links">
-              <a href="#" aria-label="VK">VK</a>
-              <a href="#" aria-label="Telegram">Telegram</a>
-              <a href="#" aria-label="Max">Max</a>
+              <a href="https://vk.com/viktor_korneplod228">VK</a>
+              <a href="https://max.ru/yourpage">Max</a>
             </div>
           </div>
         </div>
