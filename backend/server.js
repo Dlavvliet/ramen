@@ -57,6 +57,7 @@ const upload = multer({
 const dbUsers = new sqlite3.Database('./users.db');
 const dbProducts = new sqlite3.Database('./products.db');
 const dbOrders = new sqlite3.Database('./orders.db');
+const dbReviews = new sqlite3.Database('./reviews.db');
 
 //  USERS DB 
 dbUsers.run(`CREATE TABLE IF NOT EXISTS users (
@@ -145,6 +146,19 @@ dbOrders.serialize(() => {
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   )`);
   console.log('✅ БД orders.db готова!');
+});
+
+// === REVIEWS DB ===
+dbReviews.serialize(() => {
+  dbReviews.run(`CREATE TABLE IF NOT EXISTS reviews (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    email TEXT,
+    comment TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )`);
+  console.log('✅ БД reviews.db готова!');
 });
 
 // === AUTH ROUTES ===
@@ -340,7 +354,36 @@ app.get('/orders/:id', (req, res) => {
   });
 });
 
+// === REVIEWS ROUTES ===
+app.post('/reviews', (req, res) => {
+  const { name, phone, email, comment } = req.body;
+
+  if (!name || !phone || !comment) {
+    return res.status(400).json({ error: 'Имя, телефон и комментарий обязательны' });
+  }
+
+  dbReviews.run(
+    `INSERT INTO reviews (name, phone, email, comment) VALUES (?, ?, ?, ?)`,
+    [name.trim(), phone.trim(), email?.trim() || null, comment.trim()],
+    function(err) {
+      if (err) {
+        console.error('Ошибка сохранения отзыва:', err);
+        return res.status(500).json({ error: 'Ошибка сервера' });
+      }
+      console.log(`✅ Новый отзыв #${this.lastID} от ${name}`);
+      res.json({ success: true, reviewId: this.lastID, message: 'Отзыв успешно отправлен!' });
+    }
+  );
+});
+
+app.get('/reviews', (req, res) => {
+  dbReviews.all(`SELECT * FROM reviews ORDER BY created_at DESC`, (err, rows) => {
+    if (err) return res.status(500).json({ error: 'Ошибка сервера' });
+    res.json(rows || []);
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Сервер запущен на http://localhost:${PORT}`);
-  console.log(`📋 Роуты: /products, /categories, /orders, /login, /register, /user/email, /user/password, /user/avatar`);
+  console.log(`📋 Роуты: /products, /categories, /orders, /reviews, /login, /register, /user/email, /user/password, /user/avatar`);
 });

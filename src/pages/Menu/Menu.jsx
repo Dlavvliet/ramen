@@ -10,7 +10,6 @@ export default function Menu() {
   const [expandedProduct, setExpandedProduct] = useState(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // Загружаем корзину из localStorage при первом рендере
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem('cart');
     return savedCart ? JSON.parse(savedCart) : [];
@@ -45,12 +44,10 @@ export default function Menu() {
     });
   }, [menuItems]);
 
-  // Сохраняем корзину в localStorage каждый раз, когда она меняется
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
-  // Добавление в корзину
   const addToCart = (product) => {
     const existingItem = cart.find(item => item.id === product.id);
     
@@ -91,8 +88,7 @@ export default function Menu() {
   const handleCheckout = () => {
     console.log('Оформление заказа:', cart);
     setIsCartOpen(false);
-    // Если хочешь очищать корзину после оформления заказа — раскомментируй:
-    // setCart([]);
+    setCart([]);
   };
 
   const closeModal = () => setExpandedProduct(null);

@@ -28,7 +28,7 @@ export default function Cart({
   return (
     <>
       <div className={`cart-overlay ${isOpen ? 'cart-overlay--open' : ''}`} onClick={onClose}>
-        <div className={`cart-content ${isOpen ? 'cart-content--open' : ''}`} onClick={(e) => e.stopPropagation()}>
+        <div className={`cart-content ${isOpen && !isOrderOpen ? 'cart-content--open' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div className="cart-header">
             <h3>Корзина ({cart.length})</h3>
             <button className="cart-close" onClick={onClose}>×</button>

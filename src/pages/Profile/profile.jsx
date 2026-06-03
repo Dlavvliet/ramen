@@ -160,7 +160,6 @@ export default function Profile() {
             </div>
             <input ref={fileInputRef} type="file" accept="image/jpeg,image/png,image/webp" onChange={handleFileChange} style={{ display: 'none' }} />
             <div className="avatar-upload-actions">
-              <p className="avatar-hint">JPG, PNG или WebP · до 5 МБ</p>
               <div className="avatar-btns">
                 {avatarFile && <button className="profile-btn" onClick={handleUploadAvatar} disabled={loading === 'avatar'}>{loading === 'avatar' ? 'Загружаем...' : 'Сохранить фото'}</button>}
                 {user.avatar && !avatarFile && <button className="profile-btn profile-btn--danger" onClick={handleDeleteAvatar} disabled={loading === 'avatar'}>Удалить фото</button>}

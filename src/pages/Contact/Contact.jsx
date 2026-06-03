@@ -7,6 +7,13 @@ export default function Contact() {
   const isMapInited = useRef(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formError, setFormError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const nameRef = useRef(null);
+  const phoneRef = useRef(null);
+  const emailRef = useRef(null);
+  const commentRef = useRef(null);
 
   useEffect(() => {
     if (isMapInited.current) return;
@@ -65,10 +72,36 @@ export default function Contact() {
     setTimeout(() => setCopiedPhone(false), 2000);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 3000);
+    setFormError('');
+    setIsLoading(true);
+
+    const body = {
+      name: nameRef.current.value,
+      phone: phoneRef.current.value,
+      email: emailRef.current.value,
+      comment: commentRef.current.value,
+    };
+
+    try {
+      const res = await fetch('http://localhost:3001/reviews', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Ошибка отправки');
+
+      setFormSubmitted(true);
+      e.target.reset();
+      setTimeout(() => setFormSubmitted(false), 3000);
+    } catch (err) {
+      setFormError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -118,16 +151,19 @@ export default function Contact() {
         </section>
 
         <section className="form-section">
-          <h2 className="section-title">📝 Оставить заявку</h2>
+          <h2 className="section-title">📝 Оставить отзыв</h2>
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-row">
-              <input type="text" placeholder="Ваше имя" required />
-              <input type="tel" placeholder="+7 (___) ___-__-__" required />
+              <input ref={nameRef} type="text" placeholder="Ваше имя" required />
+              <input ref={phoneRef} type="tel" placeholder="+7 (___) ___-__-__" required />
             </div>
-            <input type="email" placeholder="Email (необязательно)" />
-            <textarea placeholder="Комментарий к заказу" rows="4"></textarea>
-            <button type="submit" className="submit-button">
-              {formSubmitted ? '✅ Отправлено!' : 'Отправить заявку'}
+            <input ref={emailRef} type="email" placeholder="Email (необязательно)" />
+            <textarea ref={commentRef} placeholder="Комментарий к заказу" rows="4" required></textarea>
+            {formError && (
+              <p className="form-error">⚠️ {formError}</p>
+            )}
+            <button type="submit" className="submit-button" disabled={isLoading}>
+              {isLoading ? '⏳ Отправка...' : formSubmitted ? '✅ Отправлено!' : 'Отправить заявку'}
             </button>
           </form>
         </section>

@@ -61,7 +61,7 @@ export default function OrderPage({ cart, onClose, onOrderSuccess }) {
   };
 
   return (
-    <div className="order-overlay" onClick={onClose}>
+    <div className="order-overlay">
       <div className="order-container" onClick={(e) => e.stopPropagation()}>
         <div className="order-header">
           <h2>Оформление заказа</h2>
@@ -69,7 +69,6 @@ export default function OrderPage({ cart, onClose, onOrderSuccess }) {
         </div>
 
         <div className="order-body">
-          {/* Итоги корзины */}
           <div className="order-summary">
             <h3>Ваш заказ:</h3>
             <div className="order-items">
@@ -90,7 +89,6 @@ export default function OrderPage({ cart, onClose, onOrderSuccess }) {
             </div>
           </div>
 
-          {/* Форма заказа */}
           <form className="order-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Имя и фамилия *</label>
