@@ -25,6 +25,11 @@ export default function Profile() {
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [avatarFile, setAvatarFile] = useState(null);
   const [passwords, setPasswords] = useState({ current: '', next: '', confirm: '' });
+  
+  // Новые состояния для заказов
+  const [orders, setOrders] = useState([]);
+  const [loadingOrders, setLoadingOrders] = useState(true);
+
   const [status, setStatus] = useState({ type: '', section: '', message: '' });
   const [loading, setLoading] = useState('');
   const fileInputRef = useRef(null);
@@ -42,7 +47,27 @@ export default function Profile() {
     setUser(payload);
     setEmail(payload.email || '');
     if (payload.avatar) setAvatarPreview(`${API}${payload.avatar}`);
+
+    // Загружаем заказы пользователя
+    fetchMyOrders();
   }, [navigate]);
+
+  const fetchMyOrders = async () => {
+    setLoadingOrders(true);
+    try {
+      const res = await fetch(`${API}/my-orders`, {
+        headers: { Authorization: `Bearer ${getToken()}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setOrders(data);
+      }
+    } catch (err) {
+      console.error('Ошибка загрузки заказов:', err);
+    } finally {
+      setLoadingOrders(false);
+    }
+  };
 
   const setMsg = (section, type, message) => {
     setStatus({ section, type, message });
@@ -193,6 +218,56 @@ export default function Profile() {
             ))}
             <button type="submit" className="profile-btn" disabled={loading === 'password'}>{loading === 'password' ? 'Сохраняем...' : 'Изменить пароль'}</button>
           </form>
+        </div>
+
+        <div className="profile-card">
+          <h2 className="profile-card-title">Мои заказы</h2>
+          {loadingOrders ? (
+            <p>Загрузка заказов...</p>
+          ) : orders.length === 0 ? (
+            <p>У вас пока нет оформленных заказов.</p>
+          ) : (
+            <div className="orders-list">
+              {orders.map(order => (
+                <div key={order.id} className="order-card">
+                  <div className="order-header">
+                    <div>
+                      <strong>Заказ №{order.id}</strong>
+                      <span className="order-date">
+                        {new Date(order.created_at).toLocaleDateString('ru-RU', {
+                          day: '2-digit',
+                          month: '2-digit',
+                          year: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </span>
+                    </div>
+                    <div className={`order-status status-${order.status}`}>
+                      {order.status === 'new' ? 'Новый' :
+                      order.status === 'processing' ? 'В обработке' :
+                      order.status === 'delivered' ? 'Доставлен' : 'Завершён'}
+                    </div>
+                  </div>
+
+                  <div className="order-items-preview">
+                    {order.items?.slice(0, 3).map((item, idx) => (
+                      <div key={idx} className="order-item-preview">
+                        {item.name} ×{item.quantity}
+                      </div>
+                    ))}
+                    {order.items?.length > 3 && (
+                      <div className="order-item-preview">+ ещё {order.items.length - 3}</div>
+                    )}
+                  </div>
+
+                  <div className="order-total">
+                    Итого: <strong>{Number(order.total_amount).toLocaleString()} ₽</strong>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
       </div>

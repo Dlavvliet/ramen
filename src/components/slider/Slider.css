@@ -156,6 +156,7 @@
   font-weight: 800;
   letter-spacing: 1px;
   text-shadow: 0 4px 12px rgba(0,0,0,0.7);
+  white-space: nowrap;
 }
 
 .slider-subtitle {
@@ -192,5 +193,50 @@
   .slider-cta {
     font-size: 16px;
     padding: 10px 22px;
+  }
+}
+
+@media (max-width: 1440px) and (min-width: 769px) {
+  .fullSlider {
+    height: 580px !important;
+    min-height: 580px !important;                   
+  }
+
+  .slider-title {
+    font-size: 42px;                  
+  }
+
+  .slider-subtitle {
+    font-size: 28px;                 
+  }
+
+  .slider-overlay {
+    top: 42%;
+    left: 42%;
+    padding: 25px 35px;
+    gap: 8px;
+  }
+
+  .slider-cta {
+    padding: 22px 50px;
+    font-size: 17px;
+  }
+
+  .btnSlidePrev, .btnSlideNext {
+    width: 52px;
+    height: 52px;
+  }
+
+  .btnSlidePrev {
+    left: 25px;
+  }
+  
+  .btnSlideNext {
+    right: 25px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
   }
 }

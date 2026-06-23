@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="footer-top">
           <div className="footer-brand">
             <h3>🍣 Ichiraku Ramen</h3>
-            <p>Лучшая пицца в твоем городе!</p>
+            <p>Лучшая японская кухня в твоем городе!</p>
           </div>
           
           <div className="footer-menu">
@@ -54,7 +54,7 @@ const Footer = () => {
         {/* Нижняя часть */}
         <div className="footer-bottom">
           <div className="footer-info">
-            <p>&copy; 2025 PizzaMaster. Все права защищены.</p>
+            <p>&copy; 2026 IchirakuRamen. Все права защищены.</p>
             <div className="footer-links">
               <a href="/privacy">Политика конфиденциальности</a>
               <a href="/terms">Условия использования</a>

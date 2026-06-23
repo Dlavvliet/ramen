@@ -408,3 +408,144 @@
   line-height: 1.7;
   margin: 0;
 }
+
+
+@media (max-width: 1440px) and (min-width: 769px) {
+  .about-wrapper {
+    padding: 30px 0;
+  }
+
+  .containerAbout {
+    max-width: 1100px;
+    padding: 0 18px;
+  }
+
+  .titleAbout {
+    font-size: 2.6rem;
+    padding-top: 60px;
+    margin-bottom: 32px;
+  }
+
+  .posterAbout {
+    margin-bottom: 45px;
+  }
+
+  .posterAbout img {
+    max-height: 420px;
+    border-radius: 18px;
+  }
+
+  .aboutContent {
+    max-width: 820px;
+  }
+
+  .textBlock h3 {
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+  }
+
+  .textBlock p {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .stats {
+    gap: 30px;
+    margin: 32px 0;
+  }
+
+  .stat .number {
+    font-size: 2rem;
+  }
+
+  .principleSection {
+    margin: 50px 0;
+  }
+
+  .principlesTitle,
+  .partnersTitle,
+  .galleryTitle,
+  .faqTitle {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+
+  .cardsPrinciples {
+    gap: 24px;
+    max-width: 920px;
+  }
+
+  .principlesCard {
+    height: 150px;
+    padding: 0 18px;
+  }
+
+  .principlesIcon {
+    font-size: 2.6rem;
+    margin-bottom: 10px;
+  }
+
+  .principlesCard h5 {
+    font-size: 1rem;
+  }
+
+  .principlesCard p {
+    font-size: 0.85rem;
+  }
+
+  .orderBtn {
+    padding: 14px 34px;
+    font-size: 1rem;
+  }
+
+  .partnersSection {
+    margin: 65px 0 50px;
+  }
+
+  .partnersGrid {
+    gap: 40px;
+    max-width: 820px;
+  }
+
+  .partnerLogo {
+    height: 190px;
+    padding: 28px 22px;
+  }
+
+  .partnerLogo img {
+    width: 150px;
+    height: 95px;
+  }
+
+  .partnerLogo span {
+    font-size: 0.95rem;
+  }
+
+  .gallerySection {
+    margin: 50px 0;
+  }
+
+  .galleryGrid {
+    gap: 28px;
+    max-width: 920px;
+  }
+
+  .galleryItem {
+    height: 520px;
+  }
+
+  .faqSection {
+    margin: 50px auto;
+    max-width: 820px;
+  }
+
+  .faq-question {
+    padding: 18px 20px;
+    font-size: 1rem;
+  }
+
+  .faq-answer p {
+    padding: 0 20px 18px;
+    font-size: 0.95rem;
+  }
+}

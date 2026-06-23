@@ -19,6 +19,8 @@
   box-sizing: border-box;
 }
 
+
+
 .cart-overlay--open {
   background: rgba(0, 0, 0, 0.5);
   pointer-events: all;
@@ -212,7 +214,7 @@
 .cart-checkout-btn {
   width: 100%;
   padding: 15px;
-  background: #000;
+  background: rgb(112, 51, 47);
   color: white;
   border: none;
   font-size: 1.1rem;

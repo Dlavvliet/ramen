@@ -56,7 +56,6 @@ export default function Header() {
     navigate('/profile');
   };
 
-  // Получаем инициалы из email
   const getInitials = (email) => {
     if (!email) return '?';
     return email.charAt(0).toUpperCase();

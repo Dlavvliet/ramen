@@ -140,7 +140,7 @@ export default function Contact() {
           <div className="contactCard email-card">
             <FaEnvelope className="contactIcon" />
             <h3>Написать нам</h3>
-            <p>info@pizzavrn.ru</p>
+            <p>info@IchirakuRamen.ru</p>
           </div>
         </section>
 

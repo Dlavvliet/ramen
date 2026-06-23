@@ -222,7 +222,6 @@ nav > div:not(.noHover):not(.btnHeader):hover {
   background: #fdf0ef !important;
 }
 
-/* Фото аватара в хэдере */
 .avatar-btn--photo {
   padding: 0 !important;
   overflow: hidden;
@@ -235,4 +234,35 @@ nav > div:not(.noHover):not(.btnHeader):hover {
   object-fit: cover;
   border-radius: 50%;
   display: block;
+}
+
+
+@media (max-width: 1440px) and (min-width: 769px) {
+  nav {
+    height: 85px;                    
+    padding: 0 60px;                 
+  }
+
+  nav > div a {
+    font-size: 19px;                
+  }
+
+  .logo {
+    max-width: 78px;                
+  }
+
+  .btnHeader button {
+    padding: 10px 20px;
+    min-width: 120px;
+    font-size: 15px;
+  }
+
+  .avatar-btn {
+    width: 58px;
+    height: 58px;
+  }
+
+  .avatar-initials {
+    font-size: 19px;
+  }
 }

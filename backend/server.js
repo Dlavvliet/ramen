@@ -130,10 +130,11 @@ dbProducts.serialize(() => {
   console.log('✅ БД products.db готова: японская кухня (6 категорий, 24 блюда)');
 });
 
-// === ORDERS DB ===
+// === ORDERS DB (обновление) ===
 dbOrders.serialize(() => {
   dbOrders.run(`CREATE TABLE IF NOT EXISTS orders (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
     customer_name TEXT NOT NULL,
     customer_phone TEXT NOT NULL,
     customer_address TEXT NOT NULL,
@@ -143,8 +144,12 @@ dbOrders.serialize(() => {
     items TEXT NOT NULL,
     status TEXT DEFAULT 'new',
     order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
   )`);
+
+  // Добавляем колонку user_id, если её ещё нет
+  dbOrders.run(`ALTER TABLE orders ADD COLUMN user_id INTEGER`, () => {});
   console.log('✅ БД orders.db готова!');
 });
 
@@ -304,7 +309,7 @@ app.get('/products', (req, res) => {
 });
 
 // === ORDERS ROUTES ===
-app.post('/orders', (req, res) => {
+app.post('/orders', authMiddleware, (req, res) => {  // ← Добавили authMiddleware
   const {
     customer: { name, phone, address, comment, paymentMethod },
     totalAmount,
@@ -320,15 +325,18 @@ app.post('/orders', (req, res) => {
   })));
 
   dbOrders.run(
-    `INSERT INTO orders (customer_name, customer_phone, customer_address, customer_comment, payment_method, total_amount, items, status) 
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-    [name, phone, address, comment || '', paymentMethod || 'cash', totalAmount, itemsJson, 'new'],
+    `INSERT INTO orders (
+      user_id, customer_name, customer_phone, customer_address, 
+      customer_comment, payment_method, total_amount, items, status
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [req.user.id, name, phone, address, comment || '', paymentMethod || 'cash', 
+     totalAmount, itemsJson, 'new'],
     function(err) {
       if (err) {
         console.error('Ошибка сохранения заказа:', err);
         return res.status(500).json({ error: 'Ошибка сервера' });
       }
-      console.log(`✅ Новый заказ #${this.lastID} на ${totalAmount}₽ от ${name}`);
+      console.log(`✅ Новый заказ #${this.lastID} на ${totalAmount}₽ от ${name} (user ${req.user.id})`);
       res.json({ success: true, orderId: this.lastID, message: 'Заказ успешно создан!' });
     }
   );
@@ -351,6 +359,28 @@ app.get('/orders/:id', (req, res) => {
     if (err || !row) return res.status(404).json({ error: 'Заказ не найден' });
     row.items = JSON.parse(row.items);
     res.json(row);
+  });
+});
+
+// === МОИ ЗАКАЗЫ (для пользователя) ===
+app.get('/my-orders', authMiddleware, (req, res) => {
+  dbOrders.all(`
+    SELECT id, total_amount, status, created_at, items 
+    FROM orders 
+    WHERE user_id = ? 
+    ORDER BY created_at DESC
+  `, [req.user.id], (err, rows) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Ошибка сервера' });
+    }
+    
+    const orders = rows.map(order => ({
+      ...order,
+      items: JSON.parse(order.items || '[]')
+    }));
+    
+    res.json(orders);
   });
 });
 
