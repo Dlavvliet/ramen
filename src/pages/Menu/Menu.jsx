@@ -35,7 +35,7 @@ export default function Menu() {
   // Загрузка товаров
   useEffect(() => {
     menuItems.forEach((cat) => {
-      fetch(`${API_URL}/products?category=${encodeURIComponent(cat)}`)
+      fetch(`https://ramen-production-4a74.up.railway.app/products?category=${category}`)
         .then(res => res.json())
         .then(data => {
           setProducts(prev => ({ ...prev, [cat]: data }));
