@@ -18,7 +18,7 @@ export default function Login() {
     setIsLoading(true);
     
     try {
-      const res = await fetch(`${API_URL}/login`, {
+      const res = await fetch('https://ramen-production-4a74.up.railway.app/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
