@@ -101,19 +101,19 @@ export default function About() {
             <h4 className='partnersTitle'>Наши партнеры</h4>
             <div className='partnersGrid'>
               <div className='partnerLogo'>
-                <img src='images/inarctica.png'/>
+                <img src='images/inarctica.png' alt='Партнеры'/>
                 <span>INARCTICA</span>
               </div>
               <div className='partnerLogo'>
-                <img src='images/umami.png'/>
+                <img src='images/umami.png' alt='Партнеры'/>
                 <span>Умами Трейд</span>
               </div>
               <div className='partnerLogo'>
-                <img src='images/rispole.png'/>
+                <img src='images/rispole.png' alt='Партнеры'/>
                 <span>"Рисовые поля"</span>
               </div>
               <div className='partnerLogo'>
-                <img src='images/soevikrai.png'/>
+                <img src='images/soevikrai.png' alt='Партнеры'/>
                 <span>Соевый край</span>
               </div>
             </div>

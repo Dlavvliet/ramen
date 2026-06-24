@@ -9,14 +9,16 @@ export default function Slider({ images, autoPlay = true, interval = 5000, heigh
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    if (!autoPlay) return;
+    if (!autoPlay || images.length <= 1) return;
 
     const timer = setInterval(() => {
-      nextSlide();
+
+      setIsTransitioning(true);
+      setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
     }, interval);
 
     return () => clearInterval(timer);
-  }, [currentIndex, autoPlay, interval]);
+  }, [autoPlay, interval, images.length]); 
 
   const goToSlide = (index) => {
     if (isTransitioning) return;
@@ -27,16 +29,15 @@ export default function Slider({ images, autoPlay = true, interval = 5000, heigh
   const prevSlide = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    const newIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   };
 
   const nextSlide = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    const newIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
+    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
   };
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,7 +55,7 @@ export default function Slider({ images, autoPlay = true, interval = 5000, heigh
               key={index}
               className={`imgSlider ${index === currentIndex ? 'active' : ''}`}
               src={image}
-              alt={`slide ${index + 1}`}
+              alt={`slide ${index + 1}`} 
             />
           ))}
         </div>
