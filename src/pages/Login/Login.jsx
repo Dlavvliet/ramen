@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { CgMail, CgLock } from 'react-icons/cg';
 import './Login.css';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,7 +18,7 @@ export default function Login() {
     setIsLoading(true);
     
     try {
-      const res = await fetch('http://localhost:3001/login', {
+      const res = await fetch(`${API_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
