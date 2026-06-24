@@ -11,7 +11,12 @@ const app = express();
 const PORT = 3001;
 const JWT_SECRET = 'your-super-secret-key-123';
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ 
+  origin: [
+    'http://localhost:3000', 
+    'https://ichiraku-ramen-omega.vercel.app'
+  ] 
+}));
 app.use(express.json());
 
 // Папка для аватаров
