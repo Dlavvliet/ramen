@@ -14,7 +14,7 @@ const JWT_SECRET = 'your-super-secret-key-123';
 app.use(cors({ 
   origin: [
     'http://localhost:3000', 
-    'https://ichiraku-ramen-iu0dv8o98-egorsergeevich0908-6331s-projects.vercel.app'
+    'https://ichiraku-ramen-omega.vercel.app'
   ] 
 }));
 app.use(express.json());
