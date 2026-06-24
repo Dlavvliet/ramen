@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useMemo } from 'react';
 import './Menu.css';
 import Cart from '../Cart/Cart';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
 export default function Menu() {
   const contentRefs = useRef([]);
@@ -35,7 +35,7 @@ export default function Menu() {
   // Загрузка товаров
   useEffect(() => {
     menuItems.forEach((cat) => {
-      fetch(`https://ramen-production-4a74.up.railway.app/products?category=${category}`)
+      fetch(`${API_URL}/products?category=${category}`)
         .then(res => res.json())
         .then(data => {
           setProducts(prev => ({ ...prev, [cat]: data }));
