@@ -63,7 +63,6 @@ export default function Register() {
             placeholder="Пароль (минимум 6 символов)"
             required
             autoComplete="new-password" 
-            name="my_secure_app_password"
             minLength="6"
             className="register-input"
           />
