@@ -34,7 +34,7 @@ export default function WelcomeToast() {
       {toastData.type === 'register' ? (
         <span>🎉 Вы успешно зарегистрировались!</span>
       ) : (
-        <span>👋 Добро пожаловать, <span className="toast-email">{toastData.email}</span>!</span>
+        <span> Добро пожаловать, <span className="toast-email">{toastData.email}</span>!</span>
       )}
     </div>
   );
