@@ -32,9 +32,9 @@ export default function WelcomeToast() {
   return (
     <div className="welcome-toast">
       {toastData.type === 'register' ? (
-        <span>🎉 Вы успешно зарегистрировались! Войдите, используя <span className="toast-email">{toastData.email}</span></span>
+        <span>🎉 Вы успешно зарегистрировались!</span>
       ) : (
-        <span>👋 Добро пожаловать обратно, <span className="toast-email">{toastData.email}</span>!</span>
+        <span>👋 Добро пожаловать, <span className="toast-email">{toastData.email}</span>!</span>
       )}
     </div>
   );
