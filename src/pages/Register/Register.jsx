@@ -27,8 +27,7 @@ export default function Register() {
       if (data.error) {
         setError(data.error);
       } else {
-        alert('Регистрация успешна! Теперь войдите.');
-        navigate('/login');
+        navigate('/login', { state: { welcomeEmail: email } });
       }
     } catch (err) {
       setError('Ошибка сервера. Проверьте backend.');
