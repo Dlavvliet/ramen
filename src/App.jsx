@@ -11,11 +11,13 @@ import Footer from './components/footer/Footer';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Profile from './pages/Profile/profile';
+import WelcomeToast from './components/WelcomeToast/WelcomeToast';
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
+      <WelcomeToast />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
