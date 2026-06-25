@@ -2,11 +2,11 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  background-color: #74f77f; 
+  background-color: #36cc42; 
   border: 1px solid #000000;
   color: white;
   padding: 16px 24px;
-  border-radius: 8px;
+  border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 9999; 
   font-weight: 500;

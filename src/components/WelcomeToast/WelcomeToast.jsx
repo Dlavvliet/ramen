@@ -5,18 +5,21 @@ import './WelcomeToast.css';
 export default function WelcomeToast() {
   const location = useLocation();
   const [show, setShow] = useState(false);
-  const [email, setEmail] = useState('');
+  const [toastData, setToastData] = useState({ email: '', type: '' });
 
   useEffect(() => {
-    // Проверяем, передал ли какой-то роут нам email в состоянии
+    // Проверяем, пришел ли welcomeEmail из роутера
     if (location.state?.welcomeEmail) {
-      setEmail(location.state.welcomeEmail);
+      setToastData({
+        email: location.state.welcomeEmail,
+        type: location.state.type || 'login' // по умолчанию 'login'
+      });
       setShow(true);
 
       // Скрываем плашку через 4 секунды
       const timer = setTimeout(() => {
         setShow(false);
-        // Стираем state из истории браузера, чтобы уведомление не всплывало повторно при F5
+        // Очищаем state истории, чтобы уведомление не дублировалось при обычном F5
         window.history.replaceState({}, document.title);
       }, 4000);
 
@@ -28,7 +31,11 @@ export default function WelcomeToast() {
 
   return (
     <div className="welcome-toast">
-      👋 Добро пожаловать, <span className="toast-email">{email}</span>!
+      {toastData.type === 'register' ? (
+        <span>🎉 Вы успешно зарегистрировались! Войдите, используя <span className="toast-email">{toastData.email}</span></span>
+      ) : (
+        <span>👋 Добро пожаловать обратно, <span className="toast-email">{toastData.email}</span>!</span>
+      )}
     </div>
   );
 }

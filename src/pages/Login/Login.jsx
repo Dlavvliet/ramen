@@ -29,7 +29,7 @@ export default function Login() {
         setError(data.error);
       } else {
         localStorage.setItem('token', data.token);
-        navigate('/');
+        navigate('/', { state: { welcomeEmail: email, type: 'login' } });
         window.location.reload(); // Обновляем Header
       }
     } catch (err) {
