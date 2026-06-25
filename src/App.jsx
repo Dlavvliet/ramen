@@ -11,7 +11,7 @@ import Footer from './components/footer/Footer';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Profile from './pages/Profile/profile';
-import WelcomeToast from './components/welcomeToast/WelcomeToast';
+import WelcomeToast from './components/WelcomeToast/WelcomeToast';
 
 function App() {
   return (
