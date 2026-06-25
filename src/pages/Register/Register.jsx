@@ -16,7 +16,7 @@ export default function Register() {
     setIsLoading(true);
     
     try {
-      const res = await fetch('http://localhost:3001/register', {
+      const res = await fetch('https://ramen-production-4a74.up.railway.app/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
