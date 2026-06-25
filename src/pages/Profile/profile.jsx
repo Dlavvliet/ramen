@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './profile.css';
 
-const API = 'http://localhost:3001';
+const API = 'https://ramen-production-4a74.up.railway.app';
 
 const getToken = () => localStorage.getItem('token');
 const parseToken = (token) => JSON.parse(atob(token.split('.')[1]));
