@@ -37,7 +37,7 @@ export default function OrderPage({ cart, onClose, onOrderSuccess }) {
         status: 'new'
       };
 
-      const response = await fetch('http://localhost:3001/orders', {
+      const response = await fetch('https://ramen-production-4a74.up.railway.app/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
