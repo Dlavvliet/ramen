@@ -66,6 +66,7 @@ export default function Login() {
             placeholder="Введите пароль"
             required
             autoComplete="new-password"
+            name="my_secure_app_password"
             className="login-input"
           />
         </div>

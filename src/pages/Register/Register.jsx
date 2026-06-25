@@ -62,6 +62,8 @@ export default function Register() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Пароль (минимум 6 символов)"
             required
+            autoComplete="new-password" 
+            name="my_secure_app_password"
             minLength="6"
             className="register-input"
           />
