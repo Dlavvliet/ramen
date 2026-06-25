@@ -9,7 +9,7 @@
   border-radius: 25px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 9999; 
-  font-weight: 500;
+  font-weight: 300;
   animation: slideInToast 0.3s ease-out;
 }
 
