@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import { CgMail, CgLock } from 'react-icons/cg';
 import './Login.css';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
 export default function Login() {
   const [email, setEmail] = useState('');
