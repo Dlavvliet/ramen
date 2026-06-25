@@ -163,7 +163,7 @@ export default function Contact() {
               <p className="form-error">⚠️ {formError}</p>
             )}
             <button type="submit" className="submit-button" disabled={isLoading}>
-              {isLoading ? '⏳ Отправка...' : formSubmitted ? '✅ Отправлено!' : 'Отправить заявку'}
+              {isLoading ? '⏳ Отправка...' : formSubmitted ? '✅ Отправлено!' : 'Отправить отзыв'}
             </button>
           </form>
         </section>
