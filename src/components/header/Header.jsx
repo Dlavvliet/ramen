@@ -83,7 +83,7 @@ export default function Header() {
               aria-label="Меню профиля"
             >
               {user.avatar
-                ? <img src={`http://localhost:3001${user.avatar}`} alt="Аватар" className="avatar-photo" />
+                ? <img src={`https://ramen-production-4a74.up.railway.app${user.avatar}`} alt="Аватар" className="avatar-photo" />
                 : <span className="avatar-initials">{getInitials(user.email)}</span>
               }
             </button>
