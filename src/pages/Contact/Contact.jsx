@@ -85,7 +85,7 @@ export default function Contact() {
     };
 
     try {
-      const res = await fetch('http://localhost:3001/reviews', {
+      const res = await fetch('https://ramen-production-4a74.up.railway.app/reviews', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
