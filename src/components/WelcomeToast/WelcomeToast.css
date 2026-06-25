@@ -2,18 +2,19 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  background-color: #2e7d32; /* Зеленый цвет успеха */
+  background-color: #74f77f; 
+  border: 1px solid #000000;
   color: white;
   padding: 16px 24px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 9999; /* Чтобы плашка была поверх всех элементов сайта */
+  z-index: 9999; 
   font-weight: 500;
   animation: slideInToast 0.3s ease-out;
 }
 
 .toast-email {
-  color: #fffb00; /* Выделение почты желтым цветом */
+  color: #ffffff; 
   font-weight: bold;
 }
 
